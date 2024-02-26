@@ -16,7 +16,8 @@ const initialState = {
   index: 0,
   answered: null,
   points: 0,
-  progressPercent: 0,
+  highScore: 0,
+  secondsRemaining: 0,
 };
 
 const reducer = (state, action) => {
@@ -42,12 +43,20 @@ const reducer = (state, action) => {
           action.payload === question.correctOption
             ? state.points + question.points
             : state.points,
-        progressPercent: action.payload,
       };
     case "finish":
-      return { ...state, status: "finished" };
+      return {
+        ...state,
+        status: "finished",
+        highScore:
+          state.points > state.highScore ? state.points : state.highScore,
+      };
     case "restart":
-      return { ...state, status: "ready" };
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: "ready",
+      };
 
     default:
       throw new Error("Action Unknown");
@@ -55,16 +64,12 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [
-    { questions, status, index, answered, points, progressPercent },
-    dispatch,
-  ] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answered, points, highScore }, dispatch] =
+    useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
 
   const totalPoints = questions.reduce((curr, item) => curr + item.points, 0);
-
-  // const [timer, setTimer] = useState(450);
 
   useEffect(() => {
     fetch("http://localhost:8000/questions")
@@ -115,7 +120,7 @@ function App() {
               index={index}
               points={points}
               totalPoints={totalPoints}
-              progressPercent={progressPercent}
+              answered={answered}
             />
             <Question
               question={questions[index]}
@@ -126,15 +131,12 @@ function App() {
               <button className="border rounded-full w-20 h-10 p-1">
                 {/* {formatTime(timer)} */}
               </button>
-              <NextButton answered={answered} dispatch={dispatch} />
-              {index === 15 && (
-                <button
-                  onClick={() => dispatch({ type: "finish" })}
-                  className="bg-zinc-700 rounded-full float-right px-5 h-10 p-1 transition-all hover:bg-transparent hover:border"
-                >
-                  Finish
-                </button>
-              )}
+              <NextButton
+                numQuestions={numQuestions}
+                index={index}
+                answered={answered}
+                dispatch={dispatch}
+              />
             </div>
           </div>
         )}
@@ -144,6 +146,7 @@ function App() {
             points={points}
             totalPoints={totalPoints}
             dispatch={dispatch}
+            highScore={highScore}
           />
         )}
       </div>

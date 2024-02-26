@@ -1,19 +1,8 @@
 /* eslint-disable react/prop-types */
-function Progress({
-  numQuestions,
-  index,
-  points,
-  totalPoints,
-  progressPercent,
-}) {
+function Progress({ numQuestions, index, points, totalPoints, answered }) {
   return (
-    <div className="w-full">
-      <div className="relative h-2 bg-slate-200 rounded-full mb-2">
-        <div
-          style={{ width: `${progressPercent}%` }}
-          className={`absolute top-0 left-0 bg-sky-600 rounded-full h-full`}
-        ></div>
-      </div>
+    <div className="w-full progress">
+      <progress value={index + Number(answered !== null)} max={numQuestions} />
       <div className="flex justify-between items-center w-full">
         <p>
           Question {index + 1} / {numQuestions}
