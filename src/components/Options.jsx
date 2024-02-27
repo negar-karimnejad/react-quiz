@@ -1,17 +1,9 @@
 /* eslint-disable react/prop-types */
 function Options({ dispatch, answered, question }) {
-  // const clickToAnswer = (i, question) => {
-  //   if (answered) return; //For stop translate the answers Div
-  //   // dispatch({ type: "answer", payload: i + 1 });
-  //   if (question.correctOption === i) {
-  //     dispatch({ type: "incPoints", payload: question.points });
-  //   }
-  //   dispatch({ type: "progress", payload: ((i + 1) / numQuestions) * 100 });
-  // };
   const hasAnswered = answered !== null;
   return (
     <>
-      {question.options.map((option, index) => (
+      {question?.options.map((option, index) => (
         <button
           key={option}
           disabled={hasAnswered}
@@ -23,7 +15,7 @@ function Options({ dispatch, answered, question }) {
           }
             ${answered === index && "translate-x-4"}
             ${
-              question.correctOption === index
+              question?.correctOption === index
                 ? "bg-sky-500"
                 : "bg-orange-400 text-black"
             }`}

@@ -11,10 +11,12 @@ import ResultSection from "./components/ResultSection";
 import WelcomeSection from "./components/WelcomeSection";
 import Timer from "./components/Timer";
 import Footer from "./components/Footer";
+import questions from "./data/data.json";
 
 const SECS_PER_QUESTION = 30;
+
 const initialState = {
-  questions: [],
+  questions: questions,
   // "loading", "error","ready","active","finished"
   status: "loading",
   index: 0,
@@ -27,18 +29,14 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "dataRecieved":
-      return {
-        ...state,
-        questions: action.payload,
-        status: "ready",
-      };
+      return { ...state, status: "ready" };
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
       return {
         ...state,
         status: "active",
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+        secondsRemaining: state?.questions?.length * SECS_PER_QUESTION,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answered: null };
@@ -84,14 +82,10 @@ function App() {
   ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
-
   const totalPoints = questions.reduce((curr, item) => curr + item.points, 0);
 
   useEffect(() => {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataRecieved", payload: data }))
-      .catch(() => dispatch({ type: "dataFailed" }));
+    dispatch({ type: "dataRecieved" });
   }, []);
 
   return (
