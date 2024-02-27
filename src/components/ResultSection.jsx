@@ -18,9 +18,9 @@ function ResultSection({ dispatch, points, totalPoints, highScore }) {
         %)
       </p>
       <p>(Highscore: {highScore} points)</p>
-      
+
       <button
-        className="bg-zinc-700 rounded-full float-right mt-10 px-5 h-10 p-1 transition-all hover:bg-transparent hover:border"
+        className="bg-zinc-700 rounded-full float-right mt-5 px-5 h-10 p-1 transition-all hover:bg-transparent hover:border"
         onClick={() => dispatch({ type: "restart" })}
       >
         Restart Quiz
