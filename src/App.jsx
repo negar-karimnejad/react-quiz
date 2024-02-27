@@ -2,15 +2,15 @@
 import { useEffect, useReducer } from "react";
 
 import Error from "./components/Error";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
 import NextButton from "./components/NextButton";
 import Progress from "./components/Progress";
 import Question from "./components/Question";
 import ResultSection from "./components/ResultSection";
-import WelcomeSection from "./components/WelcomeSection";
 import Timer from "./components/Timer";
-import Footer from "./components/Footer";
+import WelcomeSection from "./components/WelcomeSection";
 import questions from "./data/data.json";
 
 const SECS_PER_QUESTION = 30;

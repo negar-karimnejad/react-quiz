@@ -15,7 +15,7 @@ function Options({ dispatch, answered, question }) {
           }
             ${answered === index && "translate-x-4"}
             ${
-              question?.correctOption === index
+              question.correctOption === index
                 ? "bg-sky-500"
                 : "bg-orange-400 text-black"
             }`}
