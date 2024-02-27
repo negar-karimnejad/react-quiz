@@ -6,7 +6,7 @@ function Header() {
         alt=""
         className="w-20"
       />
-      <h1 className="uppercase text-4xl">The React Quiz</h1>
+      <h1 className="uppercase md:text-4xl text-3xl">The React Quiz</h1>
     </div>
   );
 }

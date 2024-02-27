@@ -12,7 +12,7 @@ import WelcomeSection from "./components/WelcomeSection";
 import Timer from "./components/Timer";
 import Footer from "./components/Footer";
 
-const SECS_PER_QUESTION = 30
+const SECS_PER_QUESTION = 30;
 const initialState = {
   questions: [],
   // "loading", "error","ready","active","finished"
