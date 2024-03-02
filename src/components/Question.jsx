@@ -1,7 +1,6 @@
 import { useQuiz } from "../context/QuizContext";
 import Options from "./Options";
 
-/* eslint-disable react/prop-types */
 function Question() {
   const { question } = useQuiz();
 

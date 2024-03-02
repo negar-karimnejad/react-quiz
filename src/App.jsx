@@ -14,7 +14,7 @@ import { useQuiz } from "./context/QuizContext";
 
 function App() {
   const { status } = useQuiz();
-  
+
   return (
     <div className="md:w-5/12 w-10/12 m-auto text-slate-200 flex flex-col items-center justify-center">
       <div className="w-full">

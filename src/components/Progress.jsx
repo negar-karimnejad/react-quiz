@@ -1,6 +1,5 @@
 import { useQuiz } from "../context/QuizContext";
 
-/* eslint-disable react/prop-types */
 function Progress() {
   const { numQuestions, index, points, totalPoints, answered } = useQuiz();
   return (

@@ -1,8 +1,8 @@
 import { useQuiz } from "../context/QuizContext";
 
-/* eslint-disable react/prop-types */
 function ResultSection() {
   const { points, totalPoints, highScore, restart } = useQuiz();
+  
   const percentage = (points / totalPoints) * 100;
 
   let emoji;

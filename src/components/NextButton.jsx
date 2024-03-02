@@ -1,6 +1,5 @@
 import { useQuiz } from "../context/QuizContext";
 
-/* eslint-disable react/prop-types */
 function NextButton() {
   const { answered, numQuestions, index, nextQuestion, finish } = useQuiz();
 
