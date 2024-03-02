@@ -1,5 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable react/prop-types */
+
 import { createContext, useContext, useEffect, useReducer } from "react";
 import questions from "../data/data.json";
 
@@ -85,15 +86,18 @@ function QuizProvider({ children }) {
     dispatch({ type: "tick" });
   };
 
-  const restart = () => {
-    dispatch({ type: "restart" });
-  };
   const answer = (index) => {
     dispatch({ type: "answer", payload: index });
   };
+
   const nextQuestion = () => {
     dispatch({ type: "nextQuestion" });
   };
+
+  const restart = () => {
+    dispatch({ type: "restart" });
+  };
+
   const finish = () => {
     dispatch({ type: "finish" });
   };
@@ -102,29 +106,25 @@ function QuizProvider({ children }) {
     dispatch({ type: "dataRecieved" });
   }, []);
 
-  return (
-    <QuizContext.Provider
-      value={{
-        status,
-        secondsRemaining,
-        numQuestions,
-        totalPoints,
-        points,
-        highScore,
-        answered,
-        index,
-        question,
-        start,
-        restart,
-        tick,
-        answer,
-        nextQuestion,
-        finish,
-      }}
-    >
-      {children}
-    </QuizContext.Provider>
-  );
+  const value = {
+    status,
+    secondsRemaining,
+    numQuestions,
+    totalPoints,
+    points,
+    highScore,
+    answered,
+    index,
+    question,
+    start,
+    restart,
+    tick,
+    answer,
+    nextQuestion,
+    finish,
+  };
+
+  return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 }
 
 function useQuiz() {

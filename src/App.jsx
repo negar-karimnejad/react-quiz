@@ -1,5 +1,3 @@
-/* eslint-disable no-case-declarations */
-
 import Error from "./components/Error";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -32,7 +30,6 @@ function App() {
             </Footer>
           </div>
         )}
-
         {status === "finished" && <ResultSection />}
       </div>
     </div>
