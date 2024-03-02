@@ -1,8 +1,8 @@
 import { useQuiz } from "../context/QuizContext";
 
 function ResultSection() {
-  const { points, totalPoints, highScore, restart } = useQuiz();
-  
+  const { points, totalPoints, highScore, dispatch } = useQuiz();
+
   const percentage = (points / totalPoints) * 100;
 
   let emoji;
@@ -24,7 +24,7 @@ function ResultSection() {
 
       <button
         className="bg-zinc-700 rounded-full float-right mt-5 px-5 h-10 p-1 transition-all hover:bg-transparent hover:border"
-        onClick={restart}
+        onClick={() => dispatch({ type: "restart" })}
       >
         Restart Quiz
       </button>

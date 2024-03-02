@@ -74,39 +74,15 @@ function QuizProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  const question = questions[index];
   const numQuestions = questions.length;
   const totalPoints = questions.reduce((curr, item) => curr + item.points, 0);
-
-  const start = () => {
-    dispatch({ type: "start" });
-  };
-
-  const tick = () => {
-    dispatch({ type: "tick" });
-  };
-
-  const answer = (index) => {
-    dispatch({ type: "answer", payload: index });
-  };
-
-  const nextQuestion = () => {
-    dispatch({ type: "nextQuestion" });
-  };
-
-  const restart = () => {
-    dispatch({ type: "restart" });
-  };
-
-  const finish = () => {
-    dispatch({ type: "finish" });
-  };
 
   useEffect(() => {
     dispatch({ type: "dataRecieved" });
   }, []);
 
   const value = {
+    questions,
     status,
     secondsRemaining,
     numQuestions,
@@ -115,13 +91,8 @@ function QuizProvider({ children }) {
     highScore,
     answered,
     index,
-    question,
-    start,
-    restart,
-    tick,
-    answer,
-    nextQuestion,
-    finish,
+
+    dispatch,
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

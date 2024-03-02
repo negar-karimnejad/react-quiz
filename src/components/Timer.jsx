@@ -2,17 +2,17 @@ import { useEffect } from "react";
 import { useQuiz } from "../context/QuizContext";
 
 function Timer() {
-  const { secondsRemaining, tick } = useQuiz();
+  const { secondsRemaining, dispatch } = useQuiz();
 
   const min = Math.floor(secondsRemaining / 60);
   const seconds = secondsRemaining % 60;
 
   useEffect(() => {
     const id = setInterval(() => {
-      tick();
+      dispatch({ type: "tick" });
     }, 1000);
     return () => clearInterval(id);
-  }, [tick]);
+  }, [dispatch]);
 
   return (
     <button className="border rounded-full w-20 h-10 p-1">

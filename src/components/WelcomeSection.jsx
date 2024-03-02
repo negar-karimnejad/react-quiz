@@ -1,7 +1,7 @@
 import { useQuiz } from "../context/QuizContext";
 
 function WelcomeSection() {
-  const { start, numQuestions } = useQuiz();
+  const { dispatch, numQuestions } = useQuiz();
 
   return (
     <>
@@ -11,7 +11,7 @@ function WelcomeSection() {
           {numQuestions} questions to test your React mastery
         </p>
         <button
-          onClick={start}
+          onClick={() => dispatch({ type: "start" })}
           className="mt-5 bg-zinc-700 rounded-full px-4 h-10 p-1 transition-all hover:bg-transparent hover:border"
         >
           Let&apos;s start!
