@@ -1,5 +1,9 @@
+import { useQuiz } from "../context/QuizContext";
+
 /* eslint-disable react/prop-types */
-function Options({ dispatch, answered, question }) {
+function Options() {
+  const { answered, question, answer } = useQuiz();
+
   const hasAnswered = answered !== null;
   return (
     <>
@@ -7,7 +11,7 @@ function Options({ dispatch, answered, question }) {
         <button
           key={option}
           disabled={hasAnswered}
-          onClick={() => dispatch({ type: "answer", payload: index })}
+          onClick={() => answer(index)}
           className={`text-left my-2 w-full flex items-center px-5 font-medium h-16 rounded-full transition-all ${
             hasAnswered
               ? "cursor-not-allowed"

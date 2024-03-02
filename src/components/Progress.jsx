@@ -1,5 +1,8 @@
+import { useQuiz } from "../context/QuizContext";
+
 /* eslint-disable react/prop-types */
-function Progress({ numQuestions, index, points, totalPoints, answered }) {
+function Progress() {
+  const { numQuestions, index, points, totalPoints, answered } = useQuiz();
   return (
     <div className="w-full progress">
       <progress value={index + Number(answered !== null)} max={numQuestions} />

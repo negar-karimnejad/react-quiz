@@ -1,16 +1,19 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
+import { useQuiz } from "../context/QuizContext";
 
-function Timer({ dispatch, secondsRemaining }) {
+function Timer() {
+  const { secondsRemaining, tick } = useQuiz();
+
   const min = Math.floor(secondsRemaining / 60);
   const seconds = secondsRemaining % 60;
 
   useEffect(() => {
     const id = setInterval(() => {
-      dispatch({ type: "tick" });
+      tick();
     }, 1000);
     return () => clearInterval(id);
-  }, [dispatch]);
+  }, [tick]);
 
   return (
     <button className="border rounded-full w-20 h-10 p-1">

@@ -1,11 +1,15 @@
+import { useQuiz } from "../context/QuizContext";
+
 /* eslint-disable react/prop-types */
-function NextButton({ answered, dispatch, numQuestions, index }) {
+function NextButton() {
+  const { answered, numQuestions, index, nextQuestion, finish } = useQuiz();
+
   if (answered === null) return null;
 
   if (index < numQuestions - 1)
     return (
       <button
-        onClick={() => dispatch({ type: "nextQuestion" })}
+        onClick={nextQuestion}
         className="bg-zinc-700 rounded-full w-20 h-10 p-1 transition-all hover:bg-transparent hover:border"
       >
         Next
@@ -15,7 +19,7 @@ function NextButton({ answered, dispatch, numQuestions, index }) {
   if (index === numQuestions - 1)
     return (
       <button
-        onClick={() => dispatch({ type: "finish" })}
+        onClick={finish}
         className="bg-zinc-700 rounded-full float-right px-5 h-10 p-1 transition-all hover:bg-transparent hover:border"
       >
         Finish
